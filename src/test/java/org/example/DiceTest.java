@@ -1,6 +1,7 @@
 package org.example;
 
-import org.junit.jupiter.api.BeforeAll;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,20 +45,35 @@ class DiceTest {
     void getDie1() {
         Dice dice = new Dice();
         dice.roll();
-        assertTrue(dice.getDie2() >= 1 && dice.getDie2() <= 6);
+        assertTrue(dice.getDie1() >= 1 && dice.getDie1() <= 6);
     }
 
     @org.junit.jupiter.api.Test
     void getDie2() {
         Dice dice = new Dice();
         dice.roll();
-        assertTrue(dice.getDie1() >= 1 && dice.getDie1() <= 6);
+        assertTrue(dice.getDie2() >= 1 && dice.getDie2() <= 6);
     }
 
     @org.junit.jupiter.api.Test
     void rollUntilDouble() {
         Dice dice = new Dice();
+
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
         dice.rollUntilDouble(dice);
+
+        System.setOut(System.out);
+
+        assertTrue(outContent.toString().contains("It's a double!"));
         assertTrue(dice.isDouble());
+    }
+
+    @org.junit.jupiter.api.Test
+    void testInitialState() {
+        Dice dice = new Dice();
+        assertEquals(0, dice.getDie1());
+        assertEquals(0, dice.getDie2());
     }
 }
