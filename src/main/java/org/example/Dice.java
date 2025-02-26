@@ -21,15 +21,13 @@ public class Dice {
         return die2;
     }
 
-    public static void main(String[] args) {
-        Dice dice = new Dice();
+    public static void rollUntilDouble(Dice dice) {
         int times = 0;
-
         boolean isDouble = false;
 
         while (!isDouble) {
             dice.roll();
-            times ++;
+            times++;
             System.out.println("Rolling the dice");
             System.out.println("Die 1: " + dice.getDie1());
             System.out.println("Die 2: " + dice.getDie2());
@@ -39,5 +37,11 @@ public class Dice {
                 isDouble = true;
             }
         }
+    }
+
+    public static void main(String[] args) {
+        Dice dice = new Dice();
+
+        rollUntilDouble(dice);
     }
 }
