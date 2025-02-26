@@ -66,6 +66,7 @@ class DiceTest {
 
         System.setOut(System.out);
 
+        assertTrue(outContent.toString().contains("Rolling the dice"));
         assertTrue(outContent.toString().contains("It's a double!"));
         assertTrue(dice.isDouble());
     }
